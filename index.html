@@ -1,0 +1,123 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<div class="top_bar"><br>
+    RESULT
+</div>
+<div class="top" style="background-color:white;">
+
+</div>
+<div class="middle_bar">
+
+    <button id="open">
+        < </button>
+            <button id="close">
+                >
+            </button>
+            <button id="slash">
+                /
+            </button>
+            <button id="run_code">
+                Run
+            </button>
+            <br>
+            HTML
+
+</div>
+<div class="bottom">
+    <div class="padd" onblur="this.focus()" onfocus="this.value = this.value;" contenteditable autofocus>
+
+    </div>
+    <input type="checkbox" class="autorun" id="auto">
+</div>
+
+<script>
+$(document).ready(function() {
+    var x = $("div.top");
+    var y = $("div.padd");
+    $("#run_code").click(function() {
+        x.html(y.text())
+    });
+    $("#slash").click(function() {
+        y.html(y.html() + "/")
+    });
+    $("#open").click(function() {
+        y.html(y.html() + "<")
+    });
+    $("#close").click(function() {
+        y.html(y.html() + ">")
+    });
+    y.keydown(function() {
+        if ($("#auto").is(':checked')) {
+            x.html(y.text())
+        }
+    })
+})
+</script>
+
+<style>
+* {
+    padding: 0;
+    margin: 0;
+    outline: 0;
+}
+
+body {
+    overflow: hidden;
+}
+
+.top,
+.bottom {
+    height: 45vh;
+    width: 100vw;
+    background-color: #1a1a1a;
+}
+
+.top_bar,
+.middle_bar {
+    height: 5vh;
+    width: 100vw;
+    background-color: green;
+    text-align: center;
+    color: white;
+    line-height: 1.75vh;
+}
+
+.padd {
+    height: 40vh;
+    width: 90vw;
+    position: absolute;
+    top: 77.5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+}
+
+button {
+    height: 100%;
+    width: 60px;
+    background-color: green;
+    color: white;
+    border: 0;
+}
+
+#run_code {
+    float: right;
+    width: 70px;
+}
+
+#open,
+#slash {
+    float: left;
+}
+
+#close {
+    float: right;
+}
+
+.autorun {
+    height: 20px;
+    position: fixed;
+    top: calc(100vh - 20px);
+    left: calc(100vw - 20px);
+}
+</style>
